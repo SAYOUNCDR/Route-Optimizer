@@ -115,7 +115,6 @@ function dijkstra(graph, start, end) {
   };
 }
 
-// Get node type for styling
 function getNodeType(node) {
   if (node.startsWith("A")) return "ambulance-node";
   if (node.startsWith("H")) return "hospital-node";
@@ -256,12 +255,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Find and highlight shortest path
   function findShortestPath() {
     const start = startNodeSelect.value;
     const end = endNodeSelect.value;
 
-    // Clear previous path highlights
     document.querySelectorAll("line").forEach((el) => {
       el.classList.remove("path-edge");
       el.setAttribute("stroke", "#777");
@@ -284,12 +281,10 @@ document.addEventListener("DOMContentLoaded", () => {
     pathResult.textContent = `🔵 Shortest path: ${path.join(" → ")}`;
     timeResult.textContent = `⏱️ Estimated time: ${distance} minutes`;
 
-    // Highlight path edges and labels
     for (let i = 0; i < path.length - 1; i++) {
       const from = path[i];
       const to = path[i + 1];
 
-      // Highlight edge
       if (edgeElements[`${from}-${to}`]) {
         const edge = edgeElements[`${from}-${to}`];
         edge.setAttribute("stroke", "#FFEB3B");
@@ -302,7 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
         edge.classList.add("path-edge");
       }
 
-      // Highlight label
       if (edgeLabelElements[`${from}-${to}`]) {
         const label = edgeLabelElements[`${from}-${to}`];
         label.setAttribute("fill", "#FFC107");
@@ -317,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Simulate traffic (adjust weights randomly)
+  // Simulate traffic (adjust weights)
   function simulateTraffic() {
     const trafficLevel = parseInt(trafficSlider.value);
 
